@@ -7,6 +7,7 @@ import statsmodels.api as sm
 from datetime import date, datetime
 from Evaluation.feature_eval import *
 
+
 def main():
     """
     MERKE, wenn keine Angaben, dann kann sein, dass Wetter Station in Karlsruhe an manchen Tagen keine Daten oder,
