@@ -8,6 +8,7 @@ from datetime import date, datetime
 
 def main():
     # 1. Parquet löschen
+
     forecasting = False
     editor_mode = True
 

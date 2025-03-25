@@ -14,6 +14,7 @@ def main():
     dass keine Bike Daten
     1. In Recent die Parquets vorher immer löschen, sodass Daten aktualisiert werden auf neues Wetter
     """
+
     forecasting = True
 
     editor_mode = False

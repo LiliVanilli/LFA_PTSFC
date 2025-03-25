@@ -12,6 +12,7 @@ def main():
     1. Parquets löschen
     2. neue Energie Daten von Smard runter laden
     """
+
     forecasting = True
     editor_mode = False
 
