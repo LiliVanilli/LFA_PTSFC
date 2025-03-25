@@ -177,9 +177,9 @@ def train_quantile_xgboost_bike(X_train, y_train, X_val, y_val, X_test, df_input
 
 
 def main():
-    forecasting = False
-    editor_mode = True
-    lag = False
+    forecasting = True
+    editor_mode = False
+    lag = True
     current_date = date.today()
 
     # Import and preprocess data
@@ -311,6 +311,8 @@ def main():
     df_input = df_input.drop(columns=columns_to_drop)
 
     df_input = df_input.dropna()
+
+
 
 
     # Split data

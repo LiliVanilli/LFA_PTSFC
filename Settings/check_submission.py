@@ -174,7 +174,7 @@ def check_df(df):
     print("---------------------------")
     print("Looks good!")
 
-submission_data = pd.read_csv("/Users/luisafaust/Desktop/PTFSC_Data/20250122_PhoebeBuffay.csv")
+submission_data = pd.read_csv("/Users/luisafaust/Desktop/PTFSC_Data/20250212_PhoebeBuffay.csv")
 print(submission_data.columns)
 
 check_df(submission_data)

@@ -147,7 +147,7 @@ def preprocessBikeHourly(df, start_date="2015-01-01"):
     return df
 
 
-def split_data(df_input, is_forecasting=True, forecast_horizon=7, train_start=None, train_end=None, test_start=None,
+def split_data(df_input, is_forecasting=True, forecast_horizon=14, train_start=None, train_end=None, test_start=None,
                test_end=None):
     data = df_input.sort_index()
 
@@ -167,26 +167,36 @@ def split_data(df_input, is_forecasting=True, forecast_horizon=7, train_start=No
     return train_data, test_data
 
 
-def split_data_xgboost(df_input, is_forecasting=True, forecast_horizon=7 * 24,
+def split_data_xgboost(df_input, is_forecasting=False, forecast_horizon=7*24,
                        train_start='2022-01-01', train_end='2022-12-31',
                        val_start='2023-01-01', val_end='2023-12-31',
                        test_start='2024-01-01', test_end='2024-12-31'):
-    data = df_input.sort_index()
-
     if is_forecasting:
-        test_data = data[-forecast_horizon:]
-        remaining_data = data[:-forecast_horizon]
-        # Split remaining data by year
-        split_date = remaining_data.index[len(remaining_data) // 2].strftime('%Y-%m-%d')
-        train_data = remaining_data[:split_date]
-        val_data = remaining_data[split_date:]
+        # Find the last date with actual data
+        last_actual_date = df_input[df_input['bike_count'].notna()].index[-1]
+
+        # Get the next 7 days after the last actual date for testing
+        test_df = df_input[
+            (df_input.index > last_actual_date) &
+            (df_input.index <= last_actual_date + pd.Timedelta(days=forecast_horizon))
+            ].copy()
+
+        # Get all data up to the last actual date
+        historical_data = df_input[df_input.index <= last_actual_date].copy()
+
+        # Split historical data into train and validation
+        split_date = historical_data.index[len(historical_data) // 2].strftime('%Y-%m-%d')
+        train_df = historical_data[:split_date]
+        val_df = historical_data[split_date:]
+
+        return train_df, val_df, test_df
     else:
-        train_data = data[train_start:train_end]
-        val_data = data[val_start:val_end]
-        test_data = data[test_start:test_end]
+        # Regular split for evaluation
+        train_df = df_input[train_start:train_end].copy()
+        val_df = df_input[val_start:val_end].copy()
+        test_df = df_input[test_start:test_end].copy()
 
-    return train_data, val_data, test_data
-
+        return train_df, val_df, test_df
 
 def remove_outliers(df, column, method='iqr'):
     # Konvertiere die Spalte in numerische Werte und entferne nicht-numerische
