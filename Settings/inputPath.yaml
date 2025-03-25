@@ -1,7 +1,7 @@
 paths:
   bikeURL: "https://www.eco-visio.net/api/aladdin/1.0.0/pbl/publicwebpageplus/data/100126474?idOrganisme=4586&idPdc=100126474&interval=4&flowIds=100126474&debut=04/25/2012"
   bikeURLhourly: "https://www.eco-visio.net/api/aladdin/1.0.0/pbl/publicwebpageplus/data/100126474?idOrganisme=4586&idPdc=100126474&interval=3&flowIds=100126474"
-  energyPath: "/Users/luisafaust/Desktop/PTFSC_Data/Energy/Realisierter_Stromverbrauch_202001010000_202501100000_Stunde.csv"
+  energyPath: "/Users/luisafaust/Desktop/PTFSC_Data/Energy/Realisierter_Stromverbrauch_202002010000_202502130000_Stunde.csv"
   weatherStationsPath: "/Users/luisafaust/Desktop/PTFSC_Data/Weather/WetterStationen.xlsx"
   tempURL: "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/air_temperature/"
   cloudURL: "https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/cloud_type/"
@@ -21,7 +21,7 @@ paths:
   holidaysPath: "/Users/luisafaust/Desktop/PTFSC_Data/Holidays/feiertage.xlsx"
   holidaysKarlsruhePath: "/Users/luisafaust/Desktop/PTFSC_Data/Holidays/HolidayTable_Karlsruhe.csv"
   energyGraphsPath: "/Users/luisafaust/Desktop/PTFSC_Data/Graphs/Energy"
-  outputEnergy: "/Users/luisafaust/Desktop/PTFSC_Data/Forecast"
+  outputForecast: "/Users/luisafaust/Desktop/PTFSC_Data/Forecast"
   bikeGraphsPath: "/Users/luisafaust/Desktop/PTFSC_Data/Graphs/Bike"
   bikeGraphsPathHourly: "/Users/luisafaust/Desktop/PTFSC_Data/Graphs/Bike_hourly"
   outputVal: "/Users/luisafaust/Desktop/PTFSC_Data/Validation_data"
@@ -38,4 +38,5 @@ paths:
   baseline_save: "/Users/luisafaust/Desktop/PTFSC_Data/Models/Baseline"
   quantile_reg_eval: "/Users/luisafaust/Desktop/PTFSC_Data/Models/Quantile_Reg"
   xg_eval: "/Users/luisafaust/Desktop/PTFSC_Data/Models/XGBoost"
-
+  xg_CV: "/Users/luisafaust/Desktop/PTFSC_Data/Models/XGBoost/Energy_WithCV"
+  xg_CV_bike: "/Users/luisafaust/Desktop/PTFSC_Data/Models/XGBoost/Bike_WithCV"

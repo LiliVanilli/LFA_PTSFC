@@ -285,7 +285,8 @@ def main():
         total_df = total_pred
 
     if forecasting:
-        total_df.to_excel(f"{getPaths("outputEnergy")}/Forecast_Energy_{current_date}.xlsx")
+        total_df.to_excel(f"/Users/luisafaust/Desktop/PTFSC_Data/Forecast/Forecast_Energy_{current_date}.xlsx")
+        #total_df.to_excel(f"{getPaths("outputEnergy")}/Forecast_Energy_{current_date}.xlsx")
     else:
         total_df.to_excel(f"{getPaths("outputVal")}/Validation_Energy_2022_{current_date}.xlsx")
 

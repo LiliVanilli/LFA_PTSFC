@@ -7,6 +7,7 @@ import statsmodels.api as sm
 from datetime import date, datetime
 from Evaluation.feature_eval import *
 
+
 def main():
     """
     MERKE, wenn keine Angaben, dann kann sein, dass Wetter Station in Karlsruhe an manchen Tagen keine Daten oder,
@@ -43,6 +44,8 @@ def main():
         df_precipitation = df_precipitation[df_precipitation['STATIONS_ID'] == 4177]
         df_sun = sun_cleaner(weatherData[2])
         df_sun = df_sun[df_sun['STATIONS_ID'] == 4177]
+        # Skalierung der Sonnenscheindauer, damit gleich zu historischen Daten
+        df_sun['sonnenscheinDauer'] = df_sun['sonnenscheinDauer'] / 100
         df_wind = wind_cleaner(weatherData[3])
         df_wind = df_wind[df_wind['STATIONS_ID'] == 4177]
         df_tempAgg = createMetrics(df_temperature, 'temperatur', hourly=False)
@@ -125,12 +128,14 @@ def main():
 
                        #  # After Feature Engineering
                        #  high correlation
+                       # 'avg_temperatur'
                        #   'min_temperatur',
                             'max_temperatur',
                        #   'min_regenSchnee',
                        #   'max_regenSchnee',
+                       # ACHTUNG!: Sonnenschein hat Modell zerschossen, da Daten im Forecast oft fehlerhaft sind
                            'min_sonnenscheinDauer',
-                       #   'max_sonnenscheinDauer',
+                           'max_sonnenscheinDauer',
                        #   'min_windGeschwindigkeit',
                        #   'max_windGeschwindigkeit',
                        #   'HDD',
@@ -198,9 +203,6 @@ def main():
             test_df.loc[test_df.index[i], 'lag_1w'] = last_7_train[i]
 
         print(df_input.columns)
-
-        train_df = train_df.drop(columns='lag_1w')
-        test_df = test_df.drop(columns='lag_1w')
 
 
     train_df = train_df.replace([np.inf, -np.inf], np.nan).dropna()
@@ -313,9 +315,14 @@ def main():
 
     if forecasting:
         # TODO: CHANGE
-        total_df.to_excel(f"{getPaths("outputEnergy")}/Forecast_Bike_daily_2022_{current_date}.xlsx")
+        total_df.to_excel(f"/Users/luisafaust/Desktop/PTFSC_Data/Forecast/Forecast_Bike_daily_2022_{current_date}.xlsx")
+        #total_df.to_excel(f"{getPaths("outputEnergy")}/Forecast_Bike_daily_2022_{current_date}.xlsx")
     else:
         total_df.to_excel(f"{getPaths("outputVal")}/Validation_Bike_daily_2022_{current_date}.xlsx")
+
+    #test_df.to_excel("/Users/luisafaust/Desktop/PTFSC_Data/check/test.xlsx")
+    #train_df.to_excel("/Users/luisafaust/Desktop/PTFSC_Data/check/train.xlsx")
+
 
     if not forecasting:
             save_dir = f'{getPaths("quantile_reg_eval")}/Bike_daily'
@@ -358,5 +365,7 @@ def main():
                 feature_analysis_path
             )
 
+
 if __name__ == '__main__':
     main()
+
