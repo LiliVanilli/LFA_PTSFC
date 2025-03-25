@@ -11,11 +11,8 @@ def main():
     """
     1. Parquets löschen
     2. neue Energie Daten von Smard runter laden
-    Muss noch: Fixen, sodass Parquets alte gelöscht und neue hinzugefügt werden jedes mal
-    Editor Mode nutzt ein zuvor gespeichertes Weather Datenset, sodass nicht jedes mal neu die Daten gezogen werden und
-    man Zeit spart, außerdem ist hier Evaluation mit enthalten und Daten Split ist anders
-
     """
+
     forecasting = True
     editor_mode = False
 

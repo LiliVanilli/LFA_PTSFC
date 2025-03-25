@@ -13,12 +13,8 @@ def main():
     MERKE, wenn keine Angaben, dann kann sein, dass Wetter Station in Karlsruhe an manchen Tagen keine Daten oder,
     dass keine Bike Daten
     1. In Recent die Parquets vorher immer löschen, sodass Daten aktualisiert werden auf neues Wetter
-    Muss noch: Fixen, sodass Parquets alte gelöscht und neue hinzugefügt werden jedes mal
-
-    Editor Mode nutzt ein zuvor gespeichertes Weather Datenset, sodass nicht jedes mal neu die Daten gezogen werden und
-    man Zeit spart, außerdem ist hier Evaluation mit enthalten und Daten Split ist anders
-
     """
+
     forecasting = True
 
     editor_mode = False

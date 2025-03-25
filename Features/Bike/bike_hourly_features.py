@@ -4,7 +4,6 @@ import numpy as np
 
 # Calender Features
 def calculate_hours_of_daylight(day_of_year, latitude):
-    # Check Paper
     # Berechne den Neigungswinkel der Erde (kt)
     k_t = 0.4102 * np.sin(2 * np.pi * (day_of_year - 80.25) / 365)
 
